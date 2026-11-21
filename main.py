@@ -9,6 +9,7 @@ out = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 os.makedirs(out, exist_ok=True)
 dest = os.path.join(out, "entry.txt")
 shutil.copyfile(src, dest)
+# The text is the entry: keep its bytes untouched, no re-encoding.
 # Sanity: the gate requires 1-280 UTF-8 chars, not only whitespace.
 text = open(dest, encoding="utf-8").read()
 assert 1 <= len(text) <= 280 and text.strip(), "entry.txt outside 1-280 chars"
